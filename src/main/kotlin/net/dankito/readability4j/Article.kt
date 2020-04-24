@@ -67,6 +67,15 @@ open class Article(
          */
         var dir: String? = null
 
+        /**
+         * Suggested Date metadata
+         */
+        var suggestedDate: String? = null
+
+        /**
+         * Suggested Authors metadata
+         */
+        var suggestedAuthors: List<String>? = null
 
         /**
          * [content] returns a &lt;div> element.

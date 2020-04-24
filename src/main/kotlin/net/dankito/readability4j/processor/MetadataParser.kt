@@ -5,9 +5,9 @@ import net.dankito.readability4j.util.RegExUtil
 import org.jsoup.nodes.Document
 import java.util.regex.Pattern
 
+import net.dankito.readability4j.processor.extractors.Extractor
 
 open class MetadataParser(protected val regEx: RegExUtil = RegExUtil()): ProcessorBase() {
-
 
     open fun getArticleMetadata(document: Document): ArticleMetadata {
         val metadata = ArticleMetadata()
@@ -58,6 +58,10 @@ open class MetadataParser(protected val regEx: RegExUtil = RegExUtil()): Process
                             values["twitter:title"] // Use twitter cards title.
                             ?: ""
         }
+
+        val extractor = Extractor(document)
+        metadata.suggestedDate = extractor.date();
+        metadata.suggestedAuthors = extractor.authors();
 
         return metadata
     }

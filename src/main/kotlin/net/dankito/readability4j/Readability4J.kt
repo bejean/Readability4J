@@ -126,6 +126,9 @@ open class Readability4J {
         article.byline = if(metadata.byline.isNullOrBlank()) articleGrabber.articleByline else metadata.byline
         article.dir = articleGrabber.articleDir
         article.excerpt = metadata.excerpt
+
+        article.suggestedDate = metadata.suggestedDate
+        article.suggestedAuthors = metadata.suggestedAuthors
     }
 
 }
