@@ -127,6 +127,8 @@ open class Readability4J {
         article.dir = articleGrabber.articleDir
         article.excerpt = metadata.excerpt
 
+        article.h1Count = articleGrabber.h1Count
+
         article.suggestedDate = metadata.suggestedDate
         article.suggestedAuthors = metadata.suggestedAuthors
     }

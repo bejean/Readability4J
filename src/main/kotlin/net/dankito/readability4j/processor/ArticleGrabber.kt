@@ -19,8 +19,7 @@ open class ArticleGrabber(protected val options: ReadabilityOptions, protected v
     companion object {
         // Element tags to score by default.
         val DEFAULT_TAGS_TO_SCORE = Arrays.asList("section", "h2", "h3", "h4", "h5", "h6", "p", "td", "pre")
-        
-        
+
         val DIV_TO_P_ELEMS = Arrays.asList("a", "blockquote", "dl", "div", "img", "ol", "p", "pre", "table", "ul", "select")
 
         val ALTER_TO_DIV_EXCEPTIONS = Arrays.asList("div", "article", "section", "p")
@@ -33,10 +32,8 @@ open class ArticleGrabber(protected val options: ReadabilityOptions, protected v
 
         val DATA_TABLE_DESCENDANTS = Arrays.asList("col", "colgroup", "tfoot", "thead", "th")
 
-
         private val log = LoggerFactory.getLogger(ArticleGrabber::class.java)
     }
-
 
     var articleByline: String? = null
         protected set
@@ -44,14 +41,13 @@ open class ArticleGrabber(protected val options: ReadabilityOptions, protected v
     var articleDir: String? = null
         protected set
 
+    var h1Count: Int = 0
+        protected set
 
     protected val nbTopCandidates = options.nbTopCandidates
     protected val wordThreshold = options.wordThreshold
-
     protected val readabilityObjects = HashMap<Element, ReadabilityObject>()
-
     protected val readabilityDataTable = HashMap<Element, Boolean>()
-
 
     open fun grabArticle(doc: Document, metadata: ArticleMetadata, options: ArticleGrabberOptions = ArticleGrabberOptions(), pageElement: Element? = null): Element? {
         log.debug("**** grabArticle ****")
@@ -735,6 +731,11 @@ open class ArticleGrabber(protected val options: ReadabilityOptions, protected v
      * iframes, forms, strip extraneous <p> tags, etc.
      */
     protected open fun prepArticle(articleContent: Element, options: ArticleGrabberOptions, metadata: ArticleMetadata) {
+
+        // We want to know how many h1 elements are in the grabbed content
+        val h1 = articleContent.getElementsByTag("h1")
+        this.h1Count = h1.size
+
         this.cleanStyles(articleContent)
 
         // Check for data tables before we continue, to avoid removing items in

@@ -19,6 +19,8 @@ open class Article(
 
         var articleContent: Element? = null
 
+        var h1Count: Int = 0
+
         /**
          * HTML string of processed article content in a &lt;div> element.
          *
