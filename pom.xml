@@ -41,12 +41,12 @@
             <version>${kotlin.version}</version>
             <scope>runtime</scope>
         </dependency>
-        <dependency>
+        <!--dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
             <scope>compile</scope>
-        </dependency>
+        </dependency-->
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-kotlin</artifactId>
