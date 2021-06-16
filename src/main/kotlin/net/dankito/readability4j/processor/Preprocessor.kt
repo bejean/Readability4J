@@ -28,7 +28,7 @@ open class Preprocessor(protected val regEx: RegExUtil = RegExUtil()) : Processo
 
         removeStyles(document)
 
-        removeForms(document) // TODO: this is not in Mozilla's Readability
+        //removeForms(document) // TODO: this is not in Mozilla's Readability
 
         removeComments(document) // TODO: this is not in Mozilla's Readability
 
